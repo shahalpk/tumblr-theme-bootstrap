@@ -4,7 +4,7 @@
   <head>
   
         <!-- Theme Variables -->
-	<meta name="select:Background Style" content="bg-cover-upload" title="Cover (Upload)">
+    <meta name="select:Background Style" content="bg-cover-upload" title="Cover (Upload)">
 	<meta name="select:Background Style" content="bg-cover-url" title="Cover (URL)">
 	<meta name="select:Background Style" content="bg-tile-upload" title="Tiled (Upload)">
 	<meta name="select:Background Style" content="bg-tile-url" title="Tiled (URL)">
@@ -322,12 +322,12 @@
 				{/block:IfDisqusShortname}
 		
 				<ul class="social-links pull-right">
-				  <li class="social-link"><a href="#" onclick="window.open('https://twitter.com/home?status={Permalink}', 'Share {Permalink}', 'height=320, width=640, toolbar=no, menubar=no, scrollbars=no, resizable=no, location=no, directories=no, status=no');"><i class="icon-twitter-sign"></i> Twitter</a></li>
-				  <li class="social-link"><a href="#" onclick="window.open('https://plus.google.com/share?url={Permalink}', 'Share {Permalink}', 'height=320, width=640, toolbar=no, menubar=no, scrollbars=no, resizable=no, location=no, directories=no, status=no');"><i class="icon-google-plus-sign"></i> Google+</a> </li>
-				  <!-- <li class="social-link"><a href="#" onclick="window.open('http://www.facebook.com/sharer/sharer.php?u={Permalink}', 'Share {Permalink}', 'height=320, width=640, toolbar=no, menubar=no, scrollbars=no, resizable=no, location=no, directories=no, status=no');"><i class="icon-facebook-sign"></i> Facebook</a> </li> -->
-				  <li class="social-link"><a href="#" onclick="window.open('http://www.linkedin.com/shareArticle?mini=true&url={Permalink}&summary={articleSummary}&source={Title}', 'Share {Permalink}', 'height=320, width=640, toolbar=no, menubar=no, scrollbars=no, resizable=no, location=no, directories=no, status=no');"><i class="icon-linkedin-sign"></i> LinkedIn</a> </li>
-				  <li class="social-link"><a href="#" onclick="window.open('{ReblogURL}', 'Share {Permalink}');"><i class="icon-heart"></i> Tumblr</a> </li>
-				  <li class="social-link"><a href="mailto:?subject=Shared%20link%20from%20Metatribal%20Research&body={Permalink}" target="_self"><i class="icon-envelope share-icon"></i> Email</a></li>
+				  <li class="social-link"><a href="#" onclick="window.open('https://twitter.com/home?status={URLEncodedPermalink}', 'Share {Permalink}', 'height=320, width=640, toolbar=no, menubar=no, scrollbars=no, resizable=no, location=no, directories=no, status=no');"><i class="icon-twitter-sign"></i> Twitter</a></li>
+				  <li class="social-link"><a href="#" onclick="window.open('https://plus.google.com/share?url={URLEncodedPermalink}', 'Share {Permalink}', 'height=320, width=640, toolbar=no, menubar=no, scrollbars=no, resizable=no, location=no, directories=no, status=no');"><i class="icon-google-plus-sign"></i> Google+</a> </li>
+				  <!-- <li class="social-link"><a href="#" onclick="window.open('http://www.facebook.com/sharer/sharer.php?u={URLEncodedPermalink}', 'Share {Permalink}', 'height=320, width=640, toolbar=no, menubar=no, scrollbars=no, resizable=no, location=no, directories=no, status=no');"><i class="icon-facebook-sign"></i> Facebook</a> </li> -->
+				  <li class="social-link"><a href="#" onclick="window.open('http://www.linkedin.com/shareArticle?mini=true&url={URLEncodedPermalink}&source={URLEncodedTitle}', 'Share {Permalink}', 'height=320, width=640, toolbar=no, menubar=no, scrollbars=no, resizable=no, location=no, directories=no, status=no');"><i class="icon-linkedin-sign"></i> LinkedIn</a> </li>
+				  <li class="social-link"><a href="#" onclick="window.open('{ReblogURL}', 'Share {URLEncodedPermalink}');"><i class="icon-heart"></i> Tumblr</a> </li>
+				  <li class="social-link"><a href="mailto:?subject=Shared%20link%20from%20Metatribal%20Research&body={URLEncodedPermalink}" target="_self"><i class="icon-envelope share-icon"></i> Email</a></li>
 				</ul>
 				</div>
 			{/block:IfEnableSocial}
