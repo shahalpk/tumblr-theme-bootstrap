@@ -9,7 +9,7 @@ It is written to work well on large screens (desktops) as well as smaller device
 
 Niceties include
 * [Bootstrap 3](http://getbootstrap.com/) (responsive layout)
-* [jQuery 1.latest](http://jquery.com/) (from Google CDN)
+* [jQuery 1.10.x](http://jquery.com/) 
 * [Font Awesome 3.2.1](http://fortawesome.github.io/Font-Awesome/)
 * Disqus Integration
 * Direct share links (no 3rd party library)
