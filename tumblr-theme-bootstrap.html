@@ -4,7 +4,7 @@
   <head>
   
         <!-- Theme Variables -->
-    <meta name="select:Background Style" content="bg-cover-upload" title="Cover (Upload)">
+	<meta name="select:Background Style" content="bg-cover-upload" title="Cover (Upload)">
 	<meta name="select:Background Style" content="bg-cover-url" title="Cover (URL)">
 	<meta name="select:Background Style" content="bg-tile-upload" title="Tiled (Upload)">
 	<meta name="select:Background Style" content="bg-tile-url" title="Tiled (URL)">
@@ -103,7 +103,7 @@
 		
 		li.social-link {
 			display:inline;
-			padding-right: 1em;
+			padding-left: 1em;
 			color: #451F46;
 		}
 		
@@ -143,7 +143,7 @@
 	<div class="panel panel-default header">
 		<div class="panel-body">
 			<div class="pull-left">
-				<a href="/"><h1 style="text-dexoration: none; margin:0px; padding: 0px">{Title}{block:TagPage} <a href="{TagURL}"> #{Tag}</a>{/block:TagPage}{block:SearchPage} <a href="{URLSafeSearchQuery}">/ {SearchQuery} [{SearchResultCount}]</a>{/block:SearchPage}</h1></a>
+				<h1 style="text-dexoration: none; margin:0px; padding: 0px"><a href="/">{Title}</a>{block:TagPage} <a href="{TagURL}"> #{Tag}</a>{/block:TagPage}{block:SearchPage} <a href="{URLSafeSearchQuery}"> /{SearchQuery} [{SearchResultCount}]</a>{/block:SearchPage}</h1>
 				{block:Description}
 					<div><small style="text-dexoration: none; margin:0px; padding: 0px">{Description}</small></div>
 			      {/block:Description}
@@ -176,11 +176,12 @@
             {block:Posts}
             <div class="panel panel-default">
   		<div class="panel-body">
-  			<div class="pull-right twitch">
-  				<a href="{Permalink}"><i class="post-type-icon icon-3x {block:Text}icon-font{/block:Text}{block:Photo}icon-camera{/block:Photo}{block:Photoset}icon-camera{/block:Photoset}{block:Quote}icon-quote-right{/block:Quote}{block:Link}icon-link{/block:Link}{block:Chat}icon-comments{/block:Chat}{block:Video}icon-film{/block:Video}{block:Audio}icon-headphones{/block:Audio}"></i></a>
+			<div class="pull-right twitch">
+				<a href="{Permalink}"><i class="post-type-icon icon-3x {block:Text}icon-font{/block:Text}{block:Photo}icon-camera{/block:Photo}{block:Photoset}icon-camera{/block:Photoset}{block:Quote}icon-quote-right{/block:Quote}{block:Link}icon-link{/block:Link}{block:Chat}icon-comments{/block:Chat}{block:Video}icon-film{/block:Video}{block:Audio}icon-headphones{/block:Audio}"></i></a>
   			</div>
+  			<br />
   			
-                {block:Text}
+                  {block:Text}
 			<div class="post text">
 				{block:Title}
 				    <h3><a href="{Permalink}">{Title}</a></h3>
@@ -294,11 +295,13 @@
                 
                 
 		<div class="post-footer">
-		
+			<div class="text-right">
+				<a href="/day/{Year}/{MonthNumberWithZero}/{DayOfMonthWithZero}">{DayOfMonthWithZero} {Month} {Year}</a>
+  			</div>
 			{block:HasTags}
 				<div class="text-right">
 				{block:Tags}
-					<a href="{TagURL}">#{Tag}</a>&nbsp;&nbsp;
+					<a href="{TagURL}">#{Tag}</a>
 				{/block:Tags}
 				</div>
 			{/block:HasTags}
