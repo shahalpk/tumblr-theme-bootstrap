@@ -2,7 +2,10 @@ tumblr-theme-bootstrap
 ======================
 
 This is a Tumblr theme I wrote using Twitter's Bootstrap 3.
-It is written to work well on large screens as well as smaller devices.
+This theme is still a work in progress, so feel free to offer suggestions.
+I wrote this theme to accomodate a mixture of longer text articles, photos, and embed code samples while maintaing a clean, modern look.
+There are a few CSS 3 effects in use, but they all degrade nicely.
+It is written to work well on large screens (desktops) as well as smaller devices (tablets and large phones).
 
 Niceties include
 * [Bootstrap 3](http://getbootstrap.com/) (responsive layout)
