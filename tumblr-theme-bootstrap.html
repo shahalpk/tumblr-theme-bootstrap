@@ -4,7 +4,7 @@
   <head>
   
         <!-- Theme Variables -->
-	<meta name="select:Background Style" content="bg-cover-upload" title="Cover (Upload)">
+    <meta name="select:Background Style" content="bg-cover-upload" title="Cover (Upload)">
 	<meta name="select:Background Style" content="bg-cover-url" title="Cover (URL)">
 	<meta name="select:Background Style" content="bg-tile-upload" title="Tiled (Upload)">
 	<meta name="select:Background Style" content="bg-tile-url" title="Tiled (URL)">
@@ -20,6 +20,8 @@
 	<meta name="color:Page Background" content="#ffffff" />
 	<meta name="color:Post Background" content="#ffffff" />
 	<meta name="color:Post Shadow" content="#888888" />
+	<meta name="color:Text Color" content="#000000" />
+	<meta name="color:Text Accent" content="#451F46" />
 	
 	<!-- Search engine stuff -->
 	<meta name="text:Snippet Author" content="" />
@@ -48,10 +50,12 @@
 	<style type="text/css">
 		
 		.bg-color {
+			color: {color:Text Color};
 			background-color: {color:Page Background};
 		}
 	
 		.bg-tile-upload {
+			color: {color:Text Color};
 			background-color: {color:Page Background};
 			{block:IfBackgroundImage}
 				background-image:url('{image:Background}');
@@ -59,6 +63,7 @@
 			{block:IfBackgroundImage}
 		}
 		.bg-tile-url {
+			color: {color:Text Color};
 			background-color: {color:Page Background};
 			{block:IfBackgroundURL}
 				background-image:url('{image:Background URL}');
@@ -68,6 +73,7 @@
 		
 		
 		.bg-cover-upload {
+			color: {color:Text Color};
 			background-color: {color:Page Background};
 			{block:IfBackgroundImage}
 				background-image:url('{image:Background}');
@@ -82,6 +88,7 @@
 		}
 
 		.bg-cover-url {
+			color: {color:Text Color};
 			background-color: {color:Page Background};
 			{block:IfBackgroundURL}
 				background-image:url('{image:Background URL}');
@@ -103,8 +110,8 @@
 		li.social-link {
 			display:inline;
 			padding-left: 1em;
-			color: #451F46;
 			white-space: nowrap;
+			color: {color:Text Accent};
 		}
 		
 		/* modify the Bootstrap navbar settings */
@@ -119,7 +126,7 @@
 		}
 		
 		.post-type-icon {
-			color: {color:Post Shadow};
+			color: {color:Text Accent};
 			text-decoration: none;
 		}
 
@@ -133,6 +140,15 @@
 			-ms-transform:rotate(20deg); /* IE 9 */
 			-webkit-transform:rotate(20deg); /* Safari and Chrome */
 		}
+		
+		a{
+			color: {color:Text Accent};
+		}
+		
+		.accent {
+			color: {color:Text Accent};
+		}
+		
 		
 		{CustomCSS}
 	</style>
@@ -165,7 +181,7 @@
 							<div class="form-group">
 								<input type="text" name="q" class="form-control input-sm" style="width: 15em;" id="searchBox" placeholder="search" value="{SearchQuery}">
 							</div>
-							<button type="submit" class="btn btn-info btn-sm">Go</button>
+							<button type="submit" class="btn btn-info btn-sm" style="background-color: {color:Text Accent}">Go</button>
 						</form>
 						</div>
 					{/block:IfEnableSearch}
@@ -301,12 +317,12 @@
 
 					<div class="post-footer">
 					
-						<div class="text-right">
+						<div class="text-right accent">
 							<a href="/day/{Year}/{MonthNumberWithZero}/{DayOfMonthWithZero}">{DayOfMonthWithZero} {Month} {Year}</a>
 						</div>
 						
 						{block:HasTags}
-							<div class="tags text-right">
+							<div class="tags text-right accent">
 							{block:Tags}
 								<a href="{TagURL}">#{Tag}</a>
 							{/block:Tags}
@@ -314,7 +330,7 @@
 						{/block:HasTags}
 
 						{block:IfEnableSocial}
-							<div class="social">
+							<div class="social accent">
 								<!-- Disqus integration -->
 								{block:IfDisqusShortname}
 									{block:IndexPage}
@@ -372,7 +388,7 @@
 			{/block:IfEnableSocial}
 		 {/block:PermalinkPage}
 
-		<div id="page-footer">
+		<div id="page-footer accent">
 			<div style="font-size: 1.5em">
 				{block:PreviousPage}
 					<div class="pull-left"><a href="{PreviousPage}" style="text-decoration: none"><i class="icon-arrow-left"></i> Previous</a></div>
