@@ -7,6 +7,7 @@
     	<meta name="if:Enable Social" content="1"/>
 	<meta name="if:Enable Gist Embed" content="1"/>
 	<meta name="if:Background Tile" content="0"/>
+	<meta name="if:Enable Search" content="1"/>
 	<meta name="text:Disqus Shortname" content="" />
     	<meta name="text:Background URL" content="" />
 	<meta name="image:Background" content="" />
@@ -123,17 +124,29 @@
 	<div class="panel panel-default header">
 		<div class="panel-body">
 			<div class="pull-left">
-				<a href="/"><h1 style="text-dexoration: none; margin:0px; padding: 0px">{Title}{block:TagPage}#{Tag}{/block:TagPage}</h1></a>
+				<a href="/"><h1 style="text-dexoration: none; margin:0px; padding: 0px">{Title}{block:TagPage} #{Tag}{/block:TagPage}{block:SearchPage} / {SearchQuery}[{SearchResultCount}]{/block:SearchPage}</h1></a>
 				{block:Description}
 					<div><small style="text-dexoration: none; margin:0px; padding: 0px">{Description}</small></div>
 			      {/block:Description}
 			</div>
-			<div class="list-inline pull-right">
-				<li><a href="/">Home</a></li>
-				{block:HasPages}{block:Pages}<li><a href="{URL}">{Label}</a></li>{/block:Pages}{/block:HasPages}
-				{block:AskEnabled}<li class="ask"><a href="/ask" class="page">{AskLabel}</a></li>{/block:AskEnabled}
-				<li><a href="/archive">Archive</a></li>
-				<li><a href="{RSS}">RSS</a></li>
+			<div class="pull-right">
+				<ul class="list-inline">
+					<li><a href="/">Home</a></li>
+					{block:HasPages}{block:Pages}<li><a href="{URL}">{Label}</a></li>{/block:Pages}{/block:HasPages}
+					{block:AskEnabled}<li class="ask"><a href="/ask" class="page">{AskLabel}</a></li>{/block:AskEnabled}
+					<li><a href="/archive">Archive</a></li>
+					<li><a href="{RSS}">RSS</a></li>
+				</ul>
+				{block:IfEnableSearch}
+					<div style="text-align: right">
+					<form class="form-inline" role="form" action="/search" method="get">
+					  <div class="form-group">
+					    <input type="text" name="q" class="form-control input-sm" id="searchBox" placeholder="search" value="{SearchQuery}">
+					  </div>
+					  <button type="submit" class="btn btn-info btn-sm">Go</button>
+					</form>
+					</div>
+				{/block:IfEnableSearch}
 			</div>
 		</div>
 
