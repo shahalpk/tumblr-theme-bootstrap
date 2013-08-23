@@ -3,20 +3,23 @@
 <html>
   <head>
   
-    <!-- Theme Variables -->
-    <meta name="if:Enable Social" content="1"/>
+        <!-- Theme Variables -->
+    	<meta name="if:Enable Social" content="1"/>
 	<meta name="if:Enable Gist Embed" content="1"/>
+	<meta name="if:Background Tile" content="0"/>
 	<meta name="text:Disqus Shortname" content="" />
-    <meta name="text:Background URL" content="" />
+    	<meta name="text:Background URL" content="" />
 	<meta name="image:Background" content="" />
-	<meta name="color:Background Color" content="#ffffff" />
+	<meta name="color:Page Background" content="#ffffff" />
+	<meta name="color:Post Background" content="#ffffff" />
+	<meta name="color:Shadow" content="#888888" />
 
 	<title>{Title}</title>
 	<link rel="shortcut icon" href="{Favicon}" />
 	<link rel="alternate" type="application/rss+xml" href="{RSS}" />
 
 	{block:Description}
-	<meta name="description" content="{MetaDescription}" />
+		<meta name="description" content="{MetaDescription}" />
 	{/block:Description}
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -39,19 +42,13 @@
 	<style type="text/css">
 	
 		#page {
-			background-color: {color:Background Color};
+			background-color: {color:Page Background};
 			{block:IfBackgroundImage}
 				background-image:url('{image:Background}');
-				background-repeat:no-repeat;
-				background-attachment:fixed;
-				background-position:center;
-				-webkit-background-size: cover;
-				-moz-background-size: cover;
-				-o-background-size: cover;
-				background-size: cover;
-			{/block:IfBackgroundImage}
-			{block:IfBackgroundURL}
-				background-image:url('{text:Background URL}');
+				{block:IfBackgroundTile}
+					background-repeat: repeat;
+				{block:IfBackgroundTile}
+				{block:IfNotBackgroundTile}
 					background-repeat:no-repeat;
 					background-attachment:fixed;
 					background-position:center;
@@ -59,6 +56,22 @@
 					-moz-background-size: cover;
 					-o-background-size: cover;
 					background-size: cover;
+				{block:IfNotBackgroundTile}
+			{/block:IfBackgroundImage}
+			{block:IfBackgroundURL}
+				background-image:url('{text:Background URL}');
+				{block:IfBackgroundTile}
+					background-repeat: repeat;
+				{block:IfBackgroundTile}
+				{block:IfNotBackgroundTile}
+					background-repeat:no-repeat;
+					background-attachment:fixed;
+					background-position:center;
+					-webkit-background-size: cover;
+					-moz-background-size: cover;
+					-o-background-size: cover;
+					background-size: cover;
+				{block:IfNotBackgroundTile}
 			{/block:IfBackgroundURL}
             
 		}
@@ -80,11 +93,12 @@
 		}
 		
 		.panel {
-			box-shadow: 10px 10px 10px #888888;
+			background-color: {color:Post Background};
+			box-shadow: 10px 10px 30px {color:Shadow};
 		}
 		
 		.post-type-icon {
-			color: #888888;
+			color: {color:Shadow};
 			text-decoration: none;
 		}
 
@@ -99,8 +113,6 @@
 			-webkit-transform:rotate(20deg); /* Safari and Chrome */
 		}
 		
-
-		
 		{CustomCSS}
 	</style>
 	
@@ -111,12 +123,13 @@
 	<div class="panel panel-default header">
 		<div class="panel-body">
 			<div class="pull-left">
-				<a href="/"><h1 style="text-dexoration: none; margin:0px; padding: 0px">{Title}</h1></a>
+				<a href="/"><h1 style="text-dexoration: none; margin:0px; padding: 0px">{Title}{block:TagPage}#{Tag}{/block:TagPage}</h1></a>
 				{block:Description}
 					<div><small style="text-dexoration: none; margin:0px; padding: 0px">{Description}</small></div>
 			      {/block:Description}
 			</div>
 			<div class="list-inline pull-right">
+				<li><a href="/">Home</a></li>
 				{block:HasPages}{block:Pages}<li><a href="{URL}">{Label}</a></li>{/block:Pages}{/block:HasPages}
 				{block:AskEnabled}<li class="ask"><a href="/ask" class="page">{AskLabel}</a></li>{/block:AskEnabled}
 				<li><a href="/archive">Archive</a></li>
@@ -247,6 +260,7 @@
                 {/block:Audio}
                 
                 
+                
 		<div class="post-footer">
 		
 			{block:HasTags}
@@ -280,6 +294,7 @@
 				  <li class="social-link"><a href="#" onclick="window.open('https://plus.google.com/share?url={Permalink}', 'Share {Permalink}', 'height=320, width=640, toolbar=no, menubar=no, scrollbars=no, resizable=no, location=no, directories=no, status=no');"><i class="icon-google-plus-sign"></i> Google+</a> </li>
 				  <!-- <li class="social-link"><a href="#" onclick="window.open('http://www.facebook.com/sharer/sharer.php?u={Permalink}', 'Share {Permalink}', 'height=320, width=640, toolbar=no, menubar=no, scrollbars=no, resizable=no, location=no, directories=no, status=no');"><i class="icon-facebook-sign"></i> Facebook</a> </li> -->
 				  <li class="social-link"><a href="#" onclick="window.open('http://www.linkedin.com/shareArticle?mini=true&url={Permalink}&summary={articleSummary}&source={Title}', 'Share {Permalink}', 'height=320, width=640, toolbar=no, menubar=no, scrollbars=no, resizable=no, location=no, directories=no, status=no');"><i class="icon-linkedin-sign"></i> LinkedIn</a> </li>
+				  <li class="social-link"><a href="#" onclick="window.open('{ReblogURL}', 'Share {Permalink}');"><i class="icon-heart"></i> Tumblr</a> </li>
 				  <li class="social-link"><a href="mailto:?subject=Shared%20link%20from%20Metatribal%20Research&body={Permalink}" target="_self"><i class="icon-envelope share-icon"></i> Email</a></li>
 				</ul>
 				</div>
