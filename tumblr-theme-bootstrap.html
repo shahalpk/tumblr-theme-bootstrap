@@ -4,12 +4,18 @@
   <head>
   
         <!-- Theme Variables -->
+	<meta name="select:Background Style" content="bg-cover-upload" title="Cover (Upload)">
+	<meta name="select:Background Style" content="bg-cover-url" title="Cover (URL)">
+	<meta name="select:Background Style" content="bg-tile-upload" title="Tiled (Upload)">
+	<meta name="select:Background Style" content="bg-tile-url" title="Tiled (URL)">
+	<meta name="select:Background Style" content="bg-color" title="Solid Color">
+	
+        
     	<meta name="if:Enable Social" content="1"/>
 	<meta name="if:Enable Gist Embed" content="1"/>
-	<meta name="if:Background Tile" content="0"/>
 	<meta name="if:Enable Search" content="1"/>
 	<meta name="text:Disqus Shortname" content="" />
-    	<meta name="text:Background URL" content="" />
+	<meta name="text:Background URL" content="" />
 	<meta name="image:Background" content="" />
 	<meta name="color:Page Background" content="#ffffff" />
 	<meta name="color:Post Background" content="#ffffff" />
@@ -41,40 +47,53 @@
 	{/block:IfEnableGistEmbed}
 
 	<style type="text/css">
+		
+		.bg-color {
+			background-color: {color:Page Background};
+		}
 	
-		#page {
+		.bg-tile-upload {
 			background-color: {color:Page Background};
 			{block:IfBackgroundImage}
 				background-image:url('{image:Background}');
-				{block:IfBackgroundTile}
-					background-repeat: repeat;
-				{block:IfBackgroundTile}
-				{block:IfNotBackgroundTile}
-					background-repeat:no-repeat;
-					background-attachment:fixed;
-					background-position:center;
-					-webkit-background-size: cover;
-					-moz-background-size: cover;
-					-o-background-size: cover;
-					background-size: cover;
-				{block:IfNotBackgroundTile}
-			{/block:IfBackgroundImage}
+				background-repeat: repeat;
+			{block:IfBackgroundImage}
+		}
+		.bg-tile-url {
+			background-color: {color:Page Background};
 			{block:IfBackgroundURL}
-				background-image:url('{text:Background URL}');
-				{block:IfBackgroundTile}
-					background-repeat: repeat;
-				{block:IfBackgroundTile}
-				{block:IfNotBackgroundTile}
-					background-repeat:no-repeat;
-					background-attachment:fixed;
-					background-position:center;
-					-webkit-background-size: cover;
-					-moz-background-size: cover;
-					-o-background-size: cover;
-					background-size: cover;
-				{block:IfNotBackgroundTile}
+				background-image:url('{image:Background URL}');
+				background-repeat: repeat;
+			{block:IfBackgroundURL}
+		}
+		
+		
+		.bg-cover-upload {
+			background-color: {color:Page Background};
+			{block:IfBackgroundImage}
+				background-image:url('{image:Background}');
+				background-repeat:no-repeat;
+				background-attachment:fixed;
+				background-position:center;
+				-webkit-background-size: cover;
+				-moz-background-size: cover;
+				-o-background-size: cover;
+				background-size: cover;
+			{/block:IfBackgroundImage}
+		}
+
+		.bg-cover-url {
+			background-color: {color:Page Background};
+			{block:IfBackgroundURL}
+				background-image:url('{image:Background URL}');
+				background-repeat:no-repeat;
+				background-attachment:fixed;
+				background-position:center;
+				-webkit-background-size: cover;
+				-moz-background-size: cover;
+				-o-background-size: cover;
+				background-size: cover;
 			{/block:IfBackgroundURL}
-            
 		}
 	
 		/* create inline sharing links */
@@ -118,13 +137,13 @@
 	</style>
 	
   </head>
-  <body id="page">
+  <body class="{select:Background Style}">
 	<div class="container">
 
 	<div class="panel panel-default header">
 		<div class="panel-body">
 			<div class="pull-left">
-				<a href="/"><h1 style="text-dexoration: none; margin:0px; padding: 0px">{Title}{block:TagPage} #{Tag}{/block:TagPage}{block:SearchPage} / {SearchQuery}[{SearchResultCount}]{/block:SearchPage}</h1></a>
+				<a href="/"><h1 style="text-dexoration: none; margin:0px; padding: 0px">{Title}{block:TagPage} <a href="{TagURL}"> #{Tag}</a>{/block:TagPage}{block:SearchPage} <a href="{URLSafeSearchQuery}">/ {SearchQuery} [{SearchResultCount}]</a>{/block:SearchPage}</h1></a>
 				{block:Description}
 					<div><small style="text-dexoration: none; margin:0px; padding: 0px">{Description}</small></div>
 			      {/block:Description}
