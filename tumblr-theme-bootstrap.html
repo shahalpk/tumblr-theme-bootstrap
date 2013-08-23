@@ -4,9 +4,12 @@
   <head>
   
     <!-- Theme Variables -->
-	<meta name="if:Enable Social" content="0"/>
-	<meta name="if:Enable Gist Embed" content="0"/>
+    <meta name="if:Enable Social" content="1"/>
+	<meta name="if:Enable Gist Embed" content="1"/>
 	<meta name="text:Disqus Shortname" content="" />
+    <meta name="text:Background URL" content="" />
+	<meta name="image:Background" content="" />
+	<meta name="color:Background Color" content="#ffffff" />
 
 	<title>{Title}</title>
 	<link rel="shortcut icon" href="{Favicon}" />
@@ -43,6 +46,31 @@
 	{/block:IfEnableGistEmbed}
 
 	<style type="text/css">
+	
+		#page {
+			background-color: {color:Background Color};
+			{block:IfBackgroundImage}
+				background-image:url('{image:Background}');
+				background-repeat:no-repeat;
+				background-attachment:fixed;
+				background-position:center;
+				-webkit-background-size: cover;
+				-moz-background-size: cover;
+				-o-background-size: cover;
+				background-size: cover;
+        	{/block:IfBackgroundImage}
+            {block:IfBackgroundURL}
+    			background-image:url('{text:Background URL}');
+				background-repeat:no-repeat;
+				background-attachment:fixed;
+				background-position:center;
+				-webkit-background-size: cover;
+				-moz-background-size: cover;
+				-o-background-size: cover;
+				background-size: cover;
+        	{/block:IfBackgroundURL}
+            
+		}
 	
 		/* create inline sharing links */
 		ul.social-links {
@@ -86,7 +114,7 @@
 	</style>
 	
   </head>
-  <body>
+  <body id="page">
 	<div class="container">
 
 	<div class="panel panel-default header">
