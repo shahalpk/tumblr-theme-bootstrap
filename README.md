@@ -14,3 +14,5 @@ Niceties include
 * Disqus Integration
 * Direct share links (no 3rd party library)
 * GitHub [Gist-Embed](https://github.com/blairvanderhoof/gist-embed) (see this [article](http://blog.metatribal.com/post/58564063300/embedding-github-gists-in-tumblr))
+
+You can install the theme directly [by click here](http://www.tumblr.com/theme/37737).
