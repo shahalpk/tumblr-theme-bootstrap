@@ -177,8 +177,8 @@
 						<li><a href="{RSS}">RSS</a></li>
 					</ul>
 					{block:IfEnableSearch}
-						<div style="text-align: right">
-						<form class="form-inline" role="form" action="/search" method="get">
+						<div style="text-align: right; display: inline-block;">
+						<form class="form-inline" style="display: inline-block;" role="form" action="/search" method="get">
 							<div class="form-group">
 								<input type="text" name="q" class="form-control input-sm" style="width: 15em;" id="searchBox" placeholder="search" value="{SearchQuery}">
 							</div>
@@ -390,7 +390,7 @@
 		 {/block:PermalinkPage}
 
 		<div id="page-footer accent">
-			<div style="font-size: 1.5em">
+			<div style="font-size: 1.5em;">
 				{block:PreviousPage}
 					<div class="pull-left"><a href="{PreviousPage}" style="text-decoration: none"><i class="icon-arrow-left"></i> Previous</a></div>
 				{/block:PreviousPage}
