@@ -5,30 +5,29 @@
   
         <!-- Theme Variables -->
     <meta name="select:Background Style" content="bg-cover-upload" title="Cover (Upload)">
-	<meta name="select:Background Style" content="bg-cover-url" title="Cover (URL)">
-	<meta name="select:Background Style" content="bg-tile-upload" title="Tiled (Upload)">
+    <meta name="select:Background Style" content="bg-cover-url" title="Cover (URL)">
+    <meta name="select:Background Style" content="bg-tile-upload" title="Tiled (Upload)">
 	<meta name="select:Background Style" content="bg-tile-url" title="Tiled (URL)">
 	<meta name="select:Background Style" content="bg-color" title="Solid Color">
 	
-        
     	<meta name="if:Enable Social" content="1"/>
 	<meta name="if:Enable Gist Embed" content="1"/>
 	<meta name="if:Enable Search" content="1"/>
+	<meta name="if:Enable Photo Bg" content="1"/>
 	<meta name="text:Disqus Shortname" content="" />
 	<meta name="text:Background URL" content="" />
 	<meta name="image:Background" content="" />
 	<meta name="color:Page Background" content="#ffffff" />
 	<meta name="color:Post Background" content="#ffffff" />
+	
 	<meta name="color:Post Shadow" content="#888888" />
-	<meta name="color:Text Color" content="#000000" />
-	<meta name="color:Text Accent" content="#4e588f" />
-	<meta name="color:Icon Accent" content="#888888" />
 	
 	<!-- Search engine stuff -->
 	<meta name="text:Snippet Author" content="" />
 	<meta name="text:Snippet Byline" content="" />
 	<meta name="text:Snippet Locality" content="" />
 	<meta name="text:Snippet Region" content="" />
+	<meta name="text:Snippet Affiliation" content="" />
 	
 
 	<title>{Title}</title>
@@ -43,20 +42,18 @@
 
 	<!-- Bootstrap -->
 	<!-- Latest compiled and minified CSS -->
-	<link rel="stylesheet" href="http://static.tumblr.com/lqqzjac/ukNms082z/bootstrap.min.css">
+	<link rel="stylesheet" href="//static.tumblr.com/lqqzjac/ukNms082z/bootstrap.min.css">
 	
 	<!-- Font Awesome -->
-	<link href="http://static.tumblr.com/lqqzjac/62wms08ea/font-awesome.min.css" rel="stylesheet">
+	<link href="//static.tumblr.com/lqqzjac/62wms08ea/font-awesome.min.css" rel="stylesheet">
 
 	<style type="text/css">
 		
 		.bg-color {
-			color: {color:Text Color};
 			background-color: {color:Page Background};
 		}
 	
 		.bg-tile-upload {
-			color: {color:Text Color};
 			background-color: {color:Page Background};
 			{block:IfBackgroundImage}
 				background-image:url('{image:Background}');
@@ -64,7 +61,6 @@
 			{block:IfBackgroundImage}
 		}
 		.bg-tile-url {
-			color: {color:Text Color};
 			background-color: {color:Page Background};
 			{block:IfBackgroundURL}
 				background-image:url('{image:Background URL}');
@@ -74,7 +70,6 @@
 		
 		
 		.bg-cover-upload {
-			color: {color:Text Color};
 			background-color: {color:Page Background};
 			{block:IfBackgroundImage}
 				background-image:url('{image:Background}');
@@ -89,7 +84,6 @@
 		}
 
 		.bg-cover-url {
-			color: {color:Text Color};
 			background-color: {color:Page Background};
 			{block:IfBackgroundURL}
 				background-image:url('{image:Background URL}');
@@ -111,8 +105,8 @@
 		li.social-link {
 			display:inline;
 			padding-left: 1em;
+			color: #451F46;
 			white-space: nowrap;
-			color: {color:Text Accent};
 		}
 		
 		/* modify the Bootstrap navbar settings */
@@ -122,19 +116,35 @@
 		
 		.panel {
 			background-color: {color:Post Background};
-			box-shadow: 10px 10px 25px {color:Post Shadow};
+			box-shadow: 10px 10px 30px {color:Post Shadow};
 			-webkit-box-shadow: 10px 10px 30px {color:Post Shadow};
 		}
 		
 		.post-type-icon {
-			color: {color:Icon Accent};
+			color: {color:Post Shadow};
 			text-decoration: none;
 		}
 
 		.post-type-icon:hover {
 			color: #2A6496;
-		}		
+		}	
 		
+		.post-header {
+			text-align: right;
+			margin-right: 10px;
+			margin-top: 0px;
+			margin-bottom: 0px;
+			padding: 0px;
+		}
+		
+		.well {
+			padding-bottom: 0px;
+			padding-top: 0px;
+			padding-right: 15px;
+			padding-left: 15px;
+			margin-top: 25px;
+			margin-bottom: 0px;
+		}
 
 		.twitch:hover {
 			transform:rotate(20deg);
@@ -142,14 +152,14 @@
 			-webkit-transform:rotate(20deg); /* Safari and Chrome */
 		}
 		
-		a{
-			color: {color:Text Accent};
-		}
-		
-		.accent {
-			color: {color:Text Accent};
-		}
-		
+		{block:IfEnablePhotoBg}
+			img.photo {
+				border-style:solid;
+				border-width:15px;
+				border-color: white;
+				outline: 2px solid black;
+			}
+		{/block:IfEnablePhotoBg}
 		
 		{CustomCSS}
 	</style>
@@ -158,7 +168,7 @@
 <body id="page" class="{select:Background Style}">
 	<div class="container">
 
-		<div id="header" class="panel panel-default header">
+		<div id="header" class="panel panel-default header container">
 			<div class="panel-body row">
 
 				<div class="text-left col-md-6">
@@ -166,26 +176,26 @@
 					{block:Description}
 						<div><small style="text-dexoration: none; margin:0px; padding: 0px">{Description}</small></div>
 				      {/block:Description}
-				</div> <!-- left column -->
+				</div>
 
 				<div class="text-right col-md-6">
-					<ul class="list-inline">
-						<li><a href="/">Home</a></li>
-						{block:HasPages}{block:Pages}<li><a href="{URL}">{Label}</a></li>{/block:Pages}{/block:HasPages}
-						{block:AskEnabled}<li class="ask"><a href="/ask" class="page">{AskLabel}</a></li>{/block:AskEnabled}
-						<li><a href="/archive">Archive</a></li>
-						<li><a href="{RSS}">RSS</a></li>
-					</ul>
-					{block:IfEnableSearch}
-						<div style="text-align: right; display: inline-block;">
-						<form class="form-inline" style="display: inline-block;" role="form" action="/search" method="get">
-							<div class="form-group">
-								<input type="text" name="q" class="form-control input-sm" style="width: 15em;" id="searchBox" placeholder="search" value="{SearchQuery}">
+					<div class="row text-right">
+						<ul class="list-inline col-md-12">
+							<li><a href="/">Home</a></li>
+							{block:HasPages}{block:Pages}<li><a href="{URL}">{Label}</a></li>{/block:Pages}{/block:HasPages}
+							{block:AskEnabled}<li class="ask"><a href="/ask" class="page">{AskLabel}</a></li>{/block:AskEnabled}
+							<li><a href="/archive">Archive</a></li>
+							<li><a href="{RSS}">RSS</a></li>
+						</ul>
+						{block:IfEnableSearch}
+							<div class="col-md-12 display: inline-block">
+								<form class="form-inline" role="form" action="/search" method="get">
+									<input type="text" name="q" class="form-control input-sm" style="width: 20em;" id="searchBox" placeholder="Search" value="{SearchQuery}">
+									<button type="submit" class="btn btn-info btn-sm">Go</button>
+								</form>
 							</div>
-							<button type="submit" class="btn btn-info btn-sm" style="background-color: {color:Text Accent}">Go</button>
-						</form>
-						</div>
-					{/block:IfEnableSearch}
+						{/block:IfEnableSearch}
+					</div>
 				</div> <!-- right column -->
 
 			</div> <!-- panel body -->
@@ -196,20 +206,28 @@
 		<div id="posts" style="padding-left: 0px">
 		{block:Posts}
 		
-			<div class="panel panel-default">
-			
+			<div class="panel panel-default" {block:IfEnablePhotoBg}{block:Photo}style="background-size: cover; background-image: url('{PhotoURL-500}');"{/block:Photo} {/block:IfEnablePhotoBg}>
+ 							
 				<div class="panel-body">
 				
-					<div class="post-header pull-right twitch">
-						<a href="{Permalink}"><i class="post-type-icon icon-3x {block:Text}icon-font{/block:Text}{block:Photo}icon-camera{/block:Photo}{block:Photoset}icon-camera{/block:Photoset}{block:Quote}icon-quote-right{/block:Quote}{block:Link}icon-link{/block:Link}{block:Chat}icon-comments{/block:Chat}{block:Video}icon-film{/block:Video}{block:Audio}icon-headphones{/block:Audio}"></i></a>
+					<div class="post-header row">
+						<h3 class="col-md-6 text-left">
+							{block:Title}
+								<a href="{Permalink}">{Title}</a>
+							{/block:Title}
+
+							{block:Link}
+								<a href="{Permalink}">{Name}</a>
+							{/block:Link}
+						</h3>
+						
+                            			<div class=".col-md-6 text-right">
+							<a href="{Permalink}"><i class="post-type-icon icon-3x {block:Text}icon-font{/block:Text}{block:Photo}icon-camera{/block:Photo}{block:Photoset}icon-camera{/block:Photoset}{block:Quote}icon-quote-right{/block:Quote}{block:Link}icon-link{/block:Link}{block:Chat}icon-comments{/block:Chat}{block:Video}icon-film{/block:Video}{block:Audio}icon-headphones{/block:Audio}"></i></a>
+						</div>
 					</div>
-					<br />
 
 					 {block:Text}
 						<div class="post text">
-							{block:Title}
-							    <h3><a href="{Permalink}">{Title}</a></h3>
-							{/block:Title}
 							{Body}
 						</div>
 					{/block:Text}
@@ -219,10 +237,6 @@
 						<div class="text-center">
 							{LinkOpenTag}<img src="{PhotoURL-500}" class="photo" alt="{PhotoAlt}" />{LinkCloseTag}
 						</div>
-
-						{block:Caption}
-						    <div class="caption">{Caption}</div>
-						{/block:Caption}
 					    </div>
 					{/block:Photo}
 
@@ -234,21 +248,21 @@
 							{LinkCloseTag}
 						</div>
 
-						{block:Caption}
-						    <div class="caption">{Caption}</div>
-						{/block:Caption}
+							{block:Caption}
+							    <div class="caption text-center" style="padding: 5px; margin-left:auto; margin-right:auto; margin-top: 10px; width: {PhotoWidth-500}px;" >{Caption}</div>
+							{/block:Caption}
 					    </div>
 					{/block:Panorama}
 
 					{block:Photoset}
 					    <div class="post photoset">
 						<div class="text-center">
-							{Photoset-500}
+							{Photoset-700}
 						</div>
 
-						{block:Caption}
-						    <div class="caption">{Caption}</div>
-						{/block:Caption}
+							{block:Caption}
+							    <div class="caption text-center" style="padding: 5px; margin-left:auto; margin-right:auto; margin-top: 10px; width: {PhotoWidth-500}px;" >{Caption}</div>
+							{/block:Caption}
 					    </div>
 					{/block:Photoset}
 
@@ -274,9 +288,6 @@
 
 					{block:Chat}
 					    <div class="post chat">
-						{block:Title}
-						    <h3><a href="{Permalink}">{Title}</a></h3>
-						{/block:Title}
 
 						<ul class="chat">
 						    {block:Lines}
@@ -297,10 +308,9 @@
 						<div class="text-center">
 							{Video-500}
 						</div>
-
-						{block:Caption}
-						    <div class="caption">{Caption}</div>
-						{/block:Caption}
+							{block:Caption}
+							    <div class="caption text-center" style="padding: 5px; margin-left:auto; margin-right:auto; margin-top: 10px; width: {PhotoWidth-500}px;" >{Caption}</div>
+							{/block:Caption}
 					    </div>
 					{/block:Video}
 
@@ -310,20 +320,26 @@
 						    {AudioPlayerBlack}
 						</div>
 
-						{block:Caption}
-						    <div class="caption">{Caption}</div>
-						{/block:Caption}
+							{block:Caption}
+							    <div class="caption text-center" style="padding: 5px; margin-left:auto; margin-right:auto; margin-top: 10px; width: {PhotoWidth-500}px;" >{Caption}</div>
+							{/block:Caption}
 					    </div>
 					{/block:Audio}
 
-					<div class="post-footer">
+					<div class="post-footer well">
 					
-						<div class="text-right accent">
+						{block:Photo}
+							{block:Caption}
+							    <div class="caption text-center" style="padding: 5px; margin-left:auto; margin-right:auto; margin-top: 10px; width: {PhotoWidth-500}px;" >{Caption}</div>
+							{/block:Caption}
+						{/block:Photo}	
+					
+						<div class="text-right">
 							<a href="/day/{Year}/{MonthNumberWithZero}/{DayOfMonthWithZero}">{DayOfMonthWithZero} {Month} {Year}</a>
 						</div>
 						
 						{block:HasTags}
-							<div class="tags text-right accent">
+							<div class="tags text-right">
 							{block:Tags}
 								<a href="{TagURL}">#{Tag}</a>
 							{/block:Tags}
@@ -331,7 +347,7 @@
 						{/block:HasTags}
 
 						{block:IfEnableSocial}
-							<div class="social accent">
+							<div class="social">
 								<!-- Disqus integration -->
 								{block:IfDisqusShortname}
 									{block:IndexPage}
@@ -389,8 +405,8 @@
 			{/block:IfEnableSocial}
 		 {/block:PermalinkPage}
 
-		<div id="page-footer accent">
-			<div style="font-size: 1.5em;">
+		<div id="page-footer">
+			<div style="font-size: 1.5em">
 				{block:PreviousPage}
 					<div class="pull-left"><a href="{PreviousPage}" style="text-decoration: none"><i class="icon-arrow-left"></i> Previous</a></div>
 				{/block:PreviousPage}
@@ -405,6 +421,7 @@
 			<span itemprop="name">{text:Snippet Author}</span>,
 			<span itemprop="title">{text:Snippet Byline}</span>,
 			<a href="{Permalink}" itemprop="url">{Permalink}</a>,
+			<span itemprop="affiliation">{text:Snippet Affiliation}</span>,
 			<span itemprop="address" itemscope itemtype="http://data-vocabulary.org/Address">
 				<span itemprop="locality">{text:Snippet Locality}</span>, 
 				<span itemprop="region">{text:Snippet Region}</span> 
@@ -414,11 +431,11 @@
 	</div> <!-- container -->
 
 	<!-- jQuery -->
-	<script src="http://static.tumblr.com/lqqzjac/TiWms0826/jquery-1.10.2.min.js" type="text/javascript"></script>
+	<script src="//static.tumblr.com/lqqzjac/TiWms0826/jquery-1.10.2.min.js" type="text/javascript"></script>
 
 	<!-- Gist embed -->
 	{block:IfEnableGistEmbed}
-		<script type="text/javascript" src="http://static.tumblr.com/lqqzjac/qtVms08j4/gist-embed.min.js"></script>
+		<script type="text/javascript" src="//static.tumblr.com/lqqzjac/qtVms08j4/gist-embed.min.js"></script>
 	{/block:IfEnableGistEmbed}
 
 </body>
