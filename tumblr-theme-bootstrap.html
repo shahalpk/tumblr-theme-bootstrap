@@ -17,10 +17,13 @@
 	<meta name="text:Disqus Shortname" content="" />
 	<meta name="text:Background URL" content="" />
 	<meta name="image:Background" content="" />
-	<meta name="color:Page Background" content="#ffffff" />
+	<meta name="color:Page Background" content="#979787" />
 	<meta name="color:Post Background" content="#ffffff" />
 	
 	<meta name="color:Post Shadow" content="#888888" />
+	<meta name="color:Text Color" content="#000000" />
+	<meta name="color:Link Color" content="#3d3daa" />
+	<meta name="color:Icon Color" content="#616156" />
 	
 	<!-- Search engine stuff -->
 	<meta name="text:Snippet Author" content="" />
@@ -48,6 +51,15 @@
 	<link href="//static.tumblr.com/lqqzjac/62wms08ea/font-awesome.min.css" rel="stylesheet">
 
 	<style type="text/css">
+		
+		body {
+			color: {color:Text Color};
+		}
+		
+		a {
+			color: {color:Link Color};
+		}
+		
 		
 		.bg-color {
 			background-color: {color:Page Background};
@@ -105,7 +117,7 @@
 		li.social-link {
 			display:inline;
 			padding-left: 1em;
-			color: #451F46;
+			color: {color:Link Color};
 			white-space: nowrap;
 		}
 		
@@ -121,7 +133,7 @@
 		}
 		
 		.post-type-icon {
-			color: {color:Post Shadow};
+			color: {color:Icon Color};
 			text-decoration: none;
 		}
 
@@ -152,6 +164,7 @@
 			-webkit-transform:rotate(20deg); /* Safari and Chrome */
 		}
 		
+    
 		{block:IfEnablePhotoBg}
 			img.photo {
 				border-style:solid;
@@ -161,6 +174,8 @@
 			}
 		{/block:IfEnablePhotoBg}
 		
+        
+        
 		{CustomCSS}
 	</style>
 	
